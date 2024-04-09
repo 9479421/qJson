@@ -3,6 +3,8 @@
 
 
 int main() {
+
+
 	std::string a = R"({"name":"222","tall":184,"data":{"age":{"sex":"18","age":22},"father":"shuaige"},"naocan": null,"age":18.2 ,"shabi": null})";
 	qJsonObject json = qJson::parseJsonObject(a);
 	printf("getString:%s\n", json.getString("name").c_str());

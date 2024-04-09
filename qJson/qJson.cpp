@@ -112,7 +112,7 @@ qJsonObject qJson::parseJsonObject(std::string str)
 
 						std::string value = after.substr(firstCharIdx + 1, i - (firstCharIdx + 1));
 						////×Ö·û´®½áÎ²ÁË
-						str = str.substr(idx + 1 + firstCharIdx + i + 1);
+						str = str.substr(idx + 1 + i + 1);  // + firstCharIdx
 
 						//printf("key:%s value:%s\n", key.c_str(), value.c_str());
 						//Ð´Èë
