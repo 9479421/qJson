@@ -3,12 +3,13 @@
 
 
 int main() {
-	std::string a = R"({"name":"222","tall":184,"data":{"age":{"sex":"18","age":22},"father":"shuaige"},"age":18.2})";
+	std::string a = R"({"name":"222","tall":184,"data":{"age":{"sex":"18","age":22},"father":"shuaige"},"naocan": null,"age":18.2 ,"shabi": null})";
 	qJsonObject json = qJson::parseJsonObject(a);
 	printf("getString:%s\n", json.getString("name").c_str());
 	printf("getString:%s\n", json.getJsonObject("data").getJsonObject("age").getString("sex").c_str());
 	printf("getInt:%d\n", json.getJsonObject("data").getJsonObject("age").getInt("age"));
 	printf("getString:%s\n", json.getJsonObject("data").getString("father").c_str());
+	printf("shabi getString:%s\n", json.getString("shabi").c_str());
 
 	printf("getDouble:%f\n", json.getDouble("age"));
 	printf("getDouble:%f\n", json.getDouble("tall"));
@@ -34,6 +35,21 @@ int main() {
 
 	printf("jsonArray %d\n", json2.getJsonArray("array")->getJsonObject(5).getInt("age"));
 	printf("jsonArray %s\n", json2.getJsonArray("array")->getJsonObject(6).getString("name").c_str());
+
+	printf("jsonArray %s\n", json2.getJsonArray("array")->toString().c_str());
+
+	printf("json2 ToString() %s \n", json2.toString().c_str());
+
+	qJsonObject jsonObject;
+	jsonObject.setInt("age", 19);
+	jsonObject.setString("name", "È¨¸ç");
+	printf("toString: %s\n", jsonObject.toString().c_str());
+
+	qJsonArray jsonArray;
+	jsonArray.addJsonObject(jsonObject);
+	jsonArray.addDigital(19);
+	jsonArray.addString("name");
+	printf("toString: %s\n", jsonArray.toString().c_str());
 
 	system("pause");
 

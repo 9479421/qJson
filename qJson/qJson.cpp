@@ -91,7 +91,7 @@ qJsonObject qJson::parseJsonObject(std::string str)
 				break;
 			}
 
-			////逗号的情况即使出现 后面也会自动pass掉
+			////前缀有逗号的情况即使出现 后面也会自动pass掉
 
 			int idx = str.find(":"); //只要key里不要出现:就OK
 
@@ -226,29 +226,8 @@ qJsonObject qJson::parseJsonObject(std::string str)
 
 				}
 
-				//判断中括号内第一个字符是不是{，来判断是jsonobject数组还是普通值数组
-
-				//if (after.at(after.find_first_not_of(' ', firstCharIdx + 1 /*大括号后面一个字符开始的第一个非空字符*/)) == '{')
-				//{
-				//	//jsonobject类型
-				//	
-				//}else{
-				//	//普通数值类型
-
-				//	
-				//}
-
-
 			}
 			else {  //说明是数字或者null
-
-				////另一种寻找逗号结尾的方法
-				//int endIdx = findFirstNotOf(after, ' ', '.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'n', 'u', 'l', 'N', 'U', 'L');
-				//if (endIdx == -1) //结尾了
-				//{
-
-				//}
-
 				std::string value;
 				int endIdx = after.find(',');
 				if (endIdx == -1) //说明是结尾了
@@ -260,12 +239,17 @@ qJsonObject qJson::parseJsonObject(std::string str)
 					value = trim(after.substr(firstCharIdx, endIdx - firstCharIdx));
 				}
 
-				//std::string value = after.substr(firstCharIdx, endIdx - firstCharIdx + 1);
-
 				str = str.substr(idx + 1 + endIdx + 1);
 				if (value.compare("NULL") == 0 || value.compare("null") == 0) //说明值为null
 				{
 					//这种情况可以忽略了
+					if (str.find_first_not_of(' ') == -1) //读到结尾了
+					{
+						end = true;
+					}
+
+
+
 
 				}
 				else {
@@ -379,6 +363,10 @@ qJsonArray* qJson::parseJsonArray(std::string str)
 					}
 				}
 			}
+			else if (str.at(idx) == '[') {
+				//这种情况待添加
+
+			}
 			else {
 				//为null或者数字
 				std::string value;
@@ -396,6 +384,11 @@ qJsonArray* qJson::parseJsonArray(std::string str)
 				if (value.compare("NULL") == 0 || value.compare("null") == 0) //说明值为null
 				{
 					//这种情况可以忽略了
+					if (str.find_first_not_of(' ') == -1) //读到结尾了
+					{
+						end = true;
+					}
+
 
 				}
 				else {
