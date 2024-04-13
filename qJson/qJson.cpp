@@ -1,6 +1,5 @@
 #include "qJson.h"
-#include <stdarg.h>
-#include<vector>
+
 
 std::string trim(const std::string& str) {
 	// 找到第一个不是空格的字符的位置

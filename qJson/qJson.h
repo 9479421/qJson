@@ -6,7 +6,7 @@
 #include<string>
 #include<iostream>
 #include<sstream>
-
+#include<stdarg.h>
 
 template<typename T1, typename T2>
 class obj
