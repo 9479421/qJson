@@ -25,7 +25,7 @@ int main() {
 	printf("jsonArray %s\n", json1.getJsonArray("data").getJsonObject(1).getString("name").c_str());
 
 
-	std::string c = R"({"data":[{"age":18},{"name":"wangshuaibi"}],"array":["3213","11111","432432",999 ,100,{"age":120},{"name":"chenhui"}],"grade":"banianji"})";
+	std::string c = R"({"data":[{"age":18},{"name":"wangshuaibi"}],"array":["3213","11111","432432",999 ,  100,{"age":120},{"name":"chenhui"}],"grade":"banianji"})";
 	qJsonObject json2 = qJson::parseJsonObject(c);
 	printf("jsonArray Size:%d\n", json2.getJsonArray("array").size());
 	printf("jsonArray %s\n", json2.getJsonArray("array").getString(0).c_str());

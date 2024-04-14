@@ -16,17 +16,17 @@ std::string trim(const std::string& str) {
 }
 
 int findFirstNotOf(const std::string& str, char ch...) {
+	std::vector<char> chVector;
+	chVector.push_back(ch);
+
 	va_list chList;
 	va_start(chList, ch);
 
-	std::vector<char> chVector;
-
-
-	int nArgVal = 0;
+	char nArgVal;
 	for (;;)
 	{
 		nArgVal = va_arg(chList, char);
-		if (nArgVal == 0)
+		if (nArgVal == '\0') //结束标志
 		{
 			break;
 		}
@@ -295,7 +295,7 @@ qJsonArray qJson::parseJsonArray(std::string str)
 				break;
 			}
 
-			int idx = findFirstNotOf(str, ' ', ',');  //第一个字的位置
+			int idx = findFirstNotOf(str, ' ', ',','\0');  //第一个字的位置
 			//判断是字符串类型还是Null还是数字类型
 			if (str.at(idx) == '"')
 			{
