@@ -53,6 +53,16 @@ int main() {
 	jsonArray.addString("name");
 	printf("toString: %s\n", jsonArray.toString().c_str());
 
+
+
+	std::string d = R"({"data":{"age":18,"isGirl":false},"array":[null,"3213","11111",true,{"age":120},{"name":"chenhui"}],"grade":"banianji"})";
+	qJsonObject json3 = qJson::parseJsonObject(d);
+
+	printf("getBool %d\n", json3.getJsonArray("array").getBool(2));
+	printf("getBool %d\n", json3.getJsonArray("array").getInt(0));
+	printf("getBool %d\n", json3.getJsonObject("data").getBool("isGirl"));
+
+
 	system("pause");
 
 	return -1;
