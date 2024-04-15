@@ -554,10 +554,12 @@ std::string qJsonObject::toString()
 		if (type == 3)
 		{
 			ssm << ((obj<qJsonObject, qJsonArray>)(it->second)).jsonArray.toString();
-			/*	qJsonArray* a = ((obj<qJsonObject, qJsonArray*>)(it->second)).jsonArray;*/
-				//printf("%s",it->second.JsonArrayToString().c_str());
-			//ssm << it->second.JsonArrayToString();
 		}
+		if (type == 4)
+		{
+			ssm << (((obj<qJsonObject, qJsonArray>)(it->second)).digital ? "true": "false");
+		}
+
 
 		if (++it != maps_obj.end())
 		{
@@ -655,6 +657,10 @@ std::string qJsonArray::toString()
 		if (type == 3)
 		{
 			ssm << maps_obj[i].jsonArray.toString();
+		}
+		if (type == 4)
+		{
+			ssm << (maps_obj[i].digital ? "true" : "false");
 		}
 
 		if (i != maps_obj.size() - 1)

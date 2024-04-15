@@ -63,6 +63,20 @@ int main() {
 	printf("getBool %d\n", json3.getJsonObject("data").getBool("isGirl"));
 
 
+
+	qJsonObject hhhh;
+	hhhh.setBool("sex", false);
+	hhhh.setString("name", "È¨¸ç");
+	printf("toString: %s\n", hhhh.toString().c_str());
+
+	qJsonArray mmmm;
+	mmmm.addJsonObject(hhhh);
+	mmmm.addDigital(19);
+	mmmm.addString("name");
+	mmmm.addBool(true);
+	printf("toString: %s\n", mmmm.toString().c_str());
+
+
 	system("pause");
 
 	return -1;

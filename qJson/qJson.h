@@ -54,6 +54,7 @@ public:
 
 	bool getBool(std::string key);
 	void setBool(std::string key, bool value);
+
 	std::string toString();
 private:
 	std::map<std::string, obj<qJsonObject, qJsonArray>> maps_obj;
