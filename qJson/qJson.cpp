@@ -104,6 +104,10 @@ qJsonObject qJson::parseJsonObject(std::string str)
 
 			std::string after = str.substr(idx + 1);
 			int firstCharIdx = after.find_first_not_of(' ');
+			if (firstCharIdx == -1) //说明是{}
+			{
+				break;
+			}
 			char firstChar = after.at(firstCharIdx);
 			if (firstChar == '"') //字符串
 			{
@@ -295,6 +299,10 @@ qJsonArray qJson::parseJsonArray(std::string str)
 			}
 
 			int idx = findFirstNotOf(str, ' ', ',','\0');  //第一个字的位置
+			if (idx == -1) //说明内容为[]
+			{
+				break;
+			}
 			//判断是字符串类型还是Null还是数字类型
 			if (str.at(idx) == '"')
 			{

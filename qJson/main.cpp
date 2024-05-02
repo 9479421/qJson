@@ -76,7 +76,8 @@ int main() {
 	mmmm.addBool(true);
 	printf("toString: %s\n", mmmm.toString().c_str());
 
-
+	qJson::parseJsonArray("[]");
+	qJson::parseJsonObject("{}");
 	system("pause");
 
 	return -1;
